@@ -37,23 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
-
-// To track validation state
   bool _isValidationFailed = false;
-
-  // Method to validate and submit the form
+  
   void _submitForm() {
     setState(() {
-      _isValidationFailed =
-          true; // Set validation state to true when form is being validated
+      _isValidationFailed = true;
     });
 
-    if (formky.currentState!.validate()) {
-      // If form is valid, show success message
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Form is valid')));
-    }
+    if (formky.currentState!.validate()) {}
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   HeighSpace(32),
                   SizedBox(
-                   height: _isValidationFailed ? 75.0.h : 56.h,
+                    height: _isValidationFailed ? 75.0.h : 56.h,
                     child: PrimaryTextFieldWidget(
                       controller: emailController,
                       hintText: "Enter your email",
@@ -105,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   HeighSpace(15),
                   SizedBox(
-                  height: _isValidationFailed ? 75.0.h : 56.h,
+                    height: _isValidationFailed ? 75.0.h : 56.h,
                     child: PrimaryTextFieldWidget(
                       controller: passwordController,
                       validator: (value) {
@@ -140,7 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   PrimaryButtonWidget(
                     onPressed: () {
                       _submitForm();
-                      if (formky.currentState!.validate()) {}
                     },
                     buttonText: "Login",
                     fontSize: 15.sp,

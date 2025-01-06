@@ -57,8 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     if (formky.currentState!.validate()) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Form is valid')));
+
     }
   }
 
@@ -185,7 +184,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   PrimaryButtonWidget(
                     onPressed: () {
                       _submitForm();
-                      if (formky.currentState!.validate()) {}
                     },
                     buttonText: "Register",
                     fontSize: 15.sp,
