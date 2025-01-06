@@ -30,7 +30,7 @@ class PrimaryOutLinedButtonWidget extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xffFFFFFF),
           side: BorderSide(
-              color: borderColor ?? AppColors.primaryColor, width: 1),
+              color: borderColor ?? AppColors.primaryColor, width: 1.w),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
           ),

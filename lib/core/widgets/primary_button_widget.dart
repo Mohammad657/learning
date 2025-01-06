@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled1/core/styling/app_colors.dart';
+import 'package:untitled1/core/styling/app_fonts.dart';
 
 class PrimaryButtonWidget extends StatelessWidget {
   final String? buttonText;
@@ -12,6 +13,7 @@ class PrimaryButtonWidget extends StatelessWidget {
   final Color? textColor;
   final void Function()? onPressed;
   final double? fonstSize;
+  final String? fontFamily;
   const PrimaryButtonWidget(
       {super.key,
       this.buttonText,
@@ -22,7 +24,8 @@ class PrimaryButtonWidget extends StatelessWidget {
       this.fontSize,
       this.textColor,
       this.onPressed,
-      this.fonstSize});
+      this.fonstSize,
+      this.fontFamily});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +41,9 @@ class PrimaryButtonWidget extends StatelessWidget {
         child: Text(
           buttonText ?? "",
           style: TextStyle(
-            color: textColor ?? Colors.white,
-            fontSize: fonstSize ?? 16.sp,
-          ),
+              color: textColor ?? Colors.white,
+              fontSize: fonstSize ?? 16.sp,
+              fontFamily: fontFamily ?? AppFonts.mainFontName),
         ));
   }
 }

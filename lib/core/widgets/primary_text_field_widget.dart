@@ -12,7 +12,8 @@ class PrimaryTextFieldWidget extends StatelessWidget {
   final Color? textColor;
   final Color? borderColor;
   final bool? isPassword;
-
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
   const PrimaryTextFieldWidget({
     super.key,
     this.hintText,
@@ -24,6 +25,8 @@ class PrimaryTextFieldWidget extends StatelessWidget {
     this.textColor,
     this.borderColor,
     this.isPassword,
+    this.controller,
+    this.validator,
   });
 
   @override
@@ -31,7 +34,9 @@ class PrimaryTextFieldWidget extends StatelessWidget {
     return SizedBox(
         width: width ?? 331.w,
         height: height ?? 56.h,
-        child: TextField(
+        child: TextFormField(
+          controller: controller,
+          validator: validator,
           autofocus: false,
           obscureText: isPassword ?? false,
           decoration: InputDecoration(
@@ -50,14 +55,21 @@ class PrimaryTextFieldWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
               borderSide: BorderSide(
                 color: borderColor ?? Color(0xffE8ECF4),
-                width: 1,
+                width: 1.w,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
               borderSide: BorderSide(
                 color: borderColor ?? AppColors.primaryColor,
-                width: 1,
+                width: 1.w,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 1.w,
               ),
             ),
             filled: true,

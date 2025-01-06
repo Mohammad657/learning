@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled1/core/features/on_boarding_screens/on_boarding_screen.dart';
+import 'package:untitled1/core/routing/router_generation_config.dart';
 import 'package:untitled1/core/styling/theme_data.dart';
 
 void main() {
@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (context, child) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: AppThemes.lightTheme,
-          home: child),
-      child: OnBoardingScreen(),
+      designSize: Size(376, 813),
+      builder: (context, child) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: AppThemes.lightTheme,
+        routerConfig: RouterGenerationConfig.goRouter,
+      ),
     );
   }
 }

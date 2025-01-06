@@ -8,6 +8,8 @@ class PrimaryTextButtonWidget extends StatelessWidget {
   final Color? textColor;
   final TextDecoration? decoration;
   final void Function()? onPressed;
+  final TextAlign? textAlign;
+  final AlignmentGeometry? alignment;
   const PrimaryTextButtonWidget({
     super.key,
     this.buttonText,
@@ -15,20 +17,26 @@ class PrimaryTextButtonWidget extends StatelessWidget {
     this.fontSize,
     this.textColor,
     this.decoration,
-    this.onPressed,
+    this.onPressed, 
+    this.textAlign, this.alignment,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: onPressed,
-        child: Text(
-          buttonText ?? "",
-          style: TextStyle(
-            decoration: decoration ?? TextDecoration.none,
-            color: textColor ?? Color(0xff202955),
-            fontSize: fontSize ?? 15.sp,
-          ),
-        ));
+    return Align(
+      alignment: alignment ?? Alignment.centerLeft,
+      child: TextButton(
+          onPressed: onPressed,
+          child: Text(
+            buttonText ?? "",
+            textAlign: textAlign,
+            style: TextStyle(
+              
+              decoration: decoration ?? TextDecoration.none,
+              color: textColor ?? Color(0xff202955),
+              fontSize: fontSize ?? 15.sp,
+            ),
+          )),
+    );
   }
 }

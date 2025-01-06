@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:untitled1/core/routing/app_routes.dart';
 import 'package:untitled1/core/styling/app_assets.dart';
 import 'package:untitled1/core/widgets/primary_button_widget.dart';
 import 'package:untitled1/core/widgets/primary_out_line_button_widget.dart';
@@ -12,6 +14,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Image.asset(
@@ -25,20 +28,25 @@ class OnBoardingScreen extends StatelessWidget {
             buttonText: "Login",
             height: 56.h,
             width: 331.w,
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).pushNamed(AppRoutes.loginScreen);
+            },
           ),
           HeighSpace(15),
           PrimaryOutLinedButtonWidget(
             buttonText: "Register",
             height: 56.h,
             width: 331.w,
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).pushNamed(AppRoutes.registerScreen);
+            },
           ),
           HeighSpace(46),
           PrimaryTextButtonWidget(
-            onPressed: (){},
+            onPressed: () {},
             buttonText: "Continue as a guest",
             decoration: TextDecoration.underline,
+            alignment: Alignment.center,
           )
         ],
       ),
