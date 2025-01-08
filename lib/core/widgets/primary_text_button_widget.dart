@@ -33,7 +33,7 @@ class PrimaryTextButtonWidget extends StatelessWidget {
             style: TextStyle(
               
               decoration: decoration ?? TextDecoration.none,
-              color: textColor ?? Color(0xff202955),
+              color: textColor ?? const Color(0xff202955),
               fontSize: fontSize ?? 15.sp,
             ),
           )),

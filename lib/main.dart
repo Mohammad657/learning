@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(376, 813),
+      designSize: const Size(376, 813),
       builder: (context, child) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

@@ -28,7 +28,7 @@ class PrimaryOutLinedButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xffFFFFFF),
+          backgroundColor: const Color(0xffFFFFFF),
           side: BorderSide(
               color: borderColor ?? AppColors.primaryColor, width: 1.w),
           shape: RoundedRectangleBorder(

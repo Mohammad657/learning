@@ -2,28 +2,36 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:untitled1/core/routing/app_routes.dart';
 import 'package:untitled1/core/styling/app_assets.dart';
 import 'package:untitled1/core/styling/app_colors.dart';
 import 'package:untitled1/core/styling/app_styles.dart';
 import 'package:untitled1/core/widgets/primary_icon_widgets.dart';
 import 'package:untitled1/core/widgets/primary_button_widget.dart';
-import 'package:untitled1/core/widgets/primary_text_field_widget.dart';
 import 'package:untitled1/core/widgets/spacing_widgets.dart';
 
-class ForgetPasswordPage extends StatefulWidget {
-  const ForgetPasswordPage({super.key});
+class OtpVerification extends StatefulWidget {
+  const OtpVerification({super.key});
 
   @override
-  State<ForgetPasswordPage> createState() => _ForgetPasswordPageState();
+  State<OtpVerification> createState() => _OtpVerificationState();
 }
 
-class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
+class _OtpVerificationState extends State<OtpVerification> {
+  late TextEditingController pinCodeController;
+
   bool isPassword = false;
   void boolIsPassword() {
     setState(() {
       isPassword = !isPassword;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pinCodeController = TextEditingController();
   }
 
   @override
@@ -38,7 +46,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeighSpace(12),
+              const HeighSpace(12),
               PrimaryIconWidgets(
                 iconPath: AppAssets.arrowBackIos,
                 iconHeight: 19.h,
@@ -50,52 +58,69 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   GoRouter.of(context).pop();
                 },
               ),
-              HeighSpace(28),
+              const HeighSpace(28),
               SizedBox(
                 width: 280.w,
                 child: Text(
-                  "Forgot Password?",
+                  "OTP Verification",
                   style: AppStyles.primaryHeadLinesStyle,
                 ),
               ),
-              HeighSpace(10),
+              const HeighSpace(10),
               SizedBox(
                 width: 331.w,
                 child: Text(
-                  "Don't worry! It occurs. Please enter the email address linked with your account.",
-                  style: AppStyles.black15BoldStyle.copyWith(color: Color(0xff8391A1)),
+                  "Enter the verification code we just sent on your email address.",
+                  style: AppStyles.black15BoldStyle
+                      .copyWith(color: const Color(0xff8391A1)),
                 ),
               ),
-              HeighSpace(32),
-              PrimaryTextFieldWidget(
-                hintText: "Enter your email",
+              const HeighSpace(32),
+              PinCodeTextField(
+                appContext: context,
+                length: 4,
+                controller: pinCodeController,
+                enableActiveFill: true,
+                keyboardType: TextInputType.number,
+                textStyle: AppStyles.primaryHeadLinesStyle.copyWith(fontSize: 22.sp),
+                pinTheme: PinTheme(
+                  fieldHeight: 60.h,
+                  fieldWidth: 70.w,
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(8.r),
+                  selectedColor: AppColors.primaryColor,
+                  selectedFillColor: AppColors.whiteColor,
+                  activeColor: AppColors.primaryColor,
+                  activeFillColor: AppColors.whiteColor,
+                  inactiveColor: AppColors.greyColor,
+                  inactiveFillColor: AppColors.greyColor.withValues(alpha: 0.1),
+                  borderWidth: 1
+                ),
               ),
-              HeighSpace(38),
+              const HeighSpace(38),
               PrimaryButtonWidget(
-                onPressed: () {},
-                buttonText: "Send Code",
+                onPressed: () {
+                  GoRouter.of(context).pushNamed(AppRoutes.passwordChanged);
+                },
+                buttonText: "Verify",
                 fontSize: 15.sp,
               ),
-              HeighSpace(361),
+              const HeighSpace(360),
               Center(
                 child: RichText(
                     text: TextSpan(
-                        text: "Remember Password? ",
+                        text: "Didn’t received code? ",
                         style: AppStyles.black15BoldStyle
                             .copyWith(color: AppColors.primaryColor),
                         children: [
                       TextSpan(
-                        text: "Login",
+                        text: "Resend",
                         style: AppStyles.black15BoldStyle,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            GoRouter.of(context)
-                                .pushNamed(AppRoutes.loginScreen);
-                          },
+                        recognizer: TapGestureRecognizer()..onTap = () {},
                       )
                     ])),
               ),
-              HeighSpace(26)
+              const HeighSpace(26)
             ],
           ),
         ),

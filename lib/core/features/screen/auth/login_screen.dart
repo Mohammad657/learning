@@ -37,15 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
-  bool _isValidationFailed = false;
-  
-  void _submitForm() {
-    setState(() {
-      _isValidationFailed = true;
-    });
-
-    if (formky.currentState!.validate()) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeighSpace(12),
+                  const HeighSpace(12),
                   PrimaryIconWidgets(
                     iconPath: AppAssets.arrowBackIos,
                     iconHeight: 19.h,
@@ -74,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       GoRouter.of(context).pop();
                     },
                   ),
-                  HeighSpace(28),
+                  const HeighSpace(28),
                   SizedBox(
                     width: 280.w,
                     child: Text(
@@ -82,44 +73,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: AppStyles.primaryHeadLinesStyle,
                     ),
                   ),
-                  HeighSpace(32),
-                  SizedBox(
-                    height: _isValidationFailed ? 75.0.h : 56.h,
-                    child: PrimaryTextFieldWidget(
-                      controller: emailController,
-                      hintText: "Enter your email",
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter your email";
-                        }
-                        return null;
-                      },
-                    ),
+                  const HeighSpace(32),
+                  PrimaryTextFieldWidget(
+                    controller: emailController,
+                    hintText: "Enter your email",
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter your email";
+                      }
+                      return null;
+                    },
                   ),
-                  HeighSpace(15),
-                  SizedBox(
-                    height: _isValidationFailed ? 75.0.h : 56.h,
-                    child: PrimaryTextFieldWidget(
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter your password";
-                        }
-                        if (value.length < 8) {
-                          return "Password must be at least 8 characters";
-                        }
-                        return null;
+                  const HeighSpace(15),
+                  PrimaryTextFieldWidget(
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter your password";
+                      }
+                      if (value.length < 8) {
+                        return "Password must be at least 8 characters";
+                      }
+                      return null;
+                    },
+                    hintText: "Enter your password",
+                    isPassword: isPassword,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        boolIsPassword();
                       },
-                      hintText: "Enter your password",
-                      isPassword: isPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          boolIsPassword();
-                        },
-                        icon: isPassword
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility),
-                      ),
+                      icon: isPassword
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
                     ),
                   ),
                   PrimaryTextButtonWidget(
@@ -129,36 +114,36 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     buttonText: "Forgot Password?",
                   ),
-                  HeighSpace(30),
+                  const HeighSpace(30),
                   PrimaryButtonWidget(
                     onPressed: () {
-                      _submitForm();
+                      if (formky.currentState!.validate()) {}
                     },
                     buttonText: "Login",
                     fontSize: 15.sp,
                   ),
-                  HeighSpace(35),
+                  const HeighSpace(35),
                   Row(
                     children: [
                       SizedBox(
                         width: 106.w,
                         child: const Divider(),
                       ),
-                      WidthSpace(12),
+                      const WidthSpace(12),
                       Text(
                         "Or Login With",
                         style: AppStyles.black15BoldStyle.copyWith(
                           color: const Color(0xff6A707C),
                         ),
                       ),
-                      WidthSpace(12),
+                      const WidthSpace(12),
                       SizedBox(
                         width: 106.w,
                         child: const Divider(),
                       ),
                     ],
                   ),
-                  HeighSpace(22),
+                  const HeighSpace(22),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -185,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  HeighSpace(120),
+                  const HeighSpace(120),
                   Center(
                     child: RichText(
                         text: TextSpan(
@@ -204,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         ])),
                   ),
-                  HeighSpace(26)
+                  const HeighSpace(26)
                 ],
               ),
             ),

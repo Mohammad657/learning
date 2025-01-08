@@ -23,16 +23,16 @@ class OnBoardingScreen extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          HeighSpace(21),
+          const HeighSpace(21),
           PrimaryButtonWidget(
             buttonText: "Login",
             height: 56.h,
             width: 331.w,
             onPressed: () {
-              GoRouter.of(context).pushNamed(AppRoutes.loginScreen);
+              GoRouter.of(context).pushNamed(AppRoutes.mainScreen);
             },
           ),
-          HeighSpace(15),
+          const HeighSpace(15),
           PrimaryOutLinedButtonWidget(
             buttonText: "Register",
             height: 56.h,
@@ -41,7 +41,7 @@ class OnBoardingScreen extends StatelessWidget {
               GoRouter.of(context).pushNamed(AppRoutes.registerScreen);
             },
           ),
-          HeighSpace(46),
+          const HeighSpace(46),
           PrimaryTextButtonWidget(
             onPressed: () {},
             buttonText: "Continue as a guest",

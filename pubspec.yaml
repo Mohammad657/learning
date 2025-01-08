@@ -37,6 +37,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   go_router: ^14.6.2
   flutter_svg: ^2.0.16
+  pin_code_fields: ^8.0.1
+  carousel_slider: ^5.0.0
+  dots_indicator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +67,9 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+    - assets/svg/main_svg/
+    - assets/svg/all_card/
+    - assets/svg/profile_icon/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -83,6 +89,12 @@ flutter:
         - asset: assets\fonts\Urbanist-Regular.ttf
         - asset: assets\fonts\Urbanist-Bold.ttf
         - asset: assets\fonts\Urbanist-Medium.ttf
+    - family: Semi
+      fonts:
+        - asset: assets\fonts\Semibold.ttf
+
+        
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

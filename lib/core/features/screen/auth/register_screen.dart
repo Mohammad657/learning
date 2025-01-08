@@ -49,18 +49,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  bool _isValidationFailed = false;
-
-  void _submitForm() {
-    setState(() {
-      _isValidationFailed = true;
-    });
-
-    if (formky.currentState!.validate()) {
-
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeighSpace(12),
+                  const HeighSpace(12),
                   PrimaryIconWidgets(
                     iconPath: AppAssets.arrowBackIos,
                     iconHeight: 19.h,
@@ -88,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       GoRouter.of(context).pop();
                     },
                   ),
-                  HeighSpace(28),
+                  const HeighSpace(28),
                   SizedBox(
                     width: 280.w,
                     child: Text(
@@ -96,106 +84,94 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: AppStyles.primaryHeadLinesStyle,
                     ),
                   ),
-                  HeighSpace(32),
-                  SizedBox(
-                    height: _isValidationFailed ? 70.0.h : 56.h,
-                    child: PrimaryTextFieldWidget(
-                      hintText: "Username",
-                      controller: userNameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your username';
-                        }
-                        return null;
+                  const HeighSpace(32),
+                  PrimaryTextFieldWidget(
+                    hintText: "Username",
+                    controller: userNameController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your username';
+                      }
+                      return null;
+                    },
+                  ),
+                  const HeighSpace(12),
+                  PrimaryTextFieldWidget(
+                    hintText: "Email",
+                    controller: emailController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!emailRegex.hasMatch(value)) {
+                        return 'Please enter a valid email address';
+                      }
+                      return null;
+                    },
+                  ),
+                  const HeighSpace(12),
+                  PrimaryTextFieldWidget(
+                    hintText: "Password",
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters long';
+                      }
+                      return null;
+                    },
+                    isPassword: isPassword,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        boolIsPassword();
                       },
+                      icon: isPassword
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
                     ),
                   ),
-                  HeighSpace(12),
-                  SizedBox(
-                    height: _isValidationFailed ? 70.0.h : 56.h,
-                    child: PrimaryTextFieldWidget(
-                      hintText: "Email",
-                      controller: emailController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        if (!emailRegex.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-                        return null;
+                  const HeighSpace(12),
+                  PrimaryTextFieldWidget(
+                    hintText: "Confirm password",
+                    controller: confirmPasswordController,
+                    validator: (value) {
+                      // Confirm password validation
+                      if (value == null || value.isEmpty) {
+                        return 'Please confirm your password';
+                      }
+                      if (value != passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                    isPassword: isConfirmedPassword,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        boolisConfirmedPassword();
                       },
+                      icon: isConfirmedPassword
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
                     ),
                   ),
-                  HeighSpace(12),
-                  SizedBox(
-                    height: _isValidationFailed ? 70.0.h : 56.h,
-                    child: PrimaryTextFieldWidget(
-                      hintText: "Password",
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        if (value.length < 6) {
-                          return 'Password must be at least 6 characters long';
-                        }
-                        return null;
-                      },
-                      isPassword: isPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          boolIsPassword();
-                        },
-                        icon: isPassword
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility),
-                      ),
-                    ),
-                  ),
-                  HeighSpace(12),
-                  SizedBox(
-                    height: _isValidationFailed ? 70.0.h : 56.h,
-                    child: PrimaryTextFieldWidget(
-                      hintText: "Confirm password",
-                      controller: confirmPasswordController,
-                      validator: (value) {
-                        // Confirm password validation
-                        if (value == null || value.isEmpty) {
-                          return 'Please confirm your password';
-                        }
-                        if (value != passwordController.text) {
-                          return 'Passwords do not match';
-                        }
-                        return null;
-                      },
-                      isPassword: isConfirmedPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          boolisConfirmedPassword();
-                        },
-                        icon: isConfirmedPassword
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility),
-                      ),
-                    ),
-                  ),
-                  HeighSpace(30),
+                  const HeighSpace(30),
                   PrimaryButtonWidget(
                     onPressed: () {
-                      _submitForm();
+                      if (formky.currentState!.validate()) {}
                     },
                     buttonText: "Register",
                     fontSize: 15.sp,
                   ),
-                  HeighSpace(35),
+                  const HeighSpace(35),
                   Row(
                     children: [
                       SizedBox(
                         width: 103.w,
                         child: const Divider(),
                       ),
-                      WidthSpace(12),
+                      const WidthSpace(12),
                       SizedBox(
                         width: 101.sp,
                         child: Text(
@@ -209,14 +185,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                         ),
                       ),
-                      WidthSpace(12),
+                      const WidthSpace(12),
                       SizedBox(
                         width: 103.w,
                         child: const Divider(),
                       ),
                     ],
                   ),
-                  HeighSpace(22),
+                  const HeighSpace(22),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -243,7 +219,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ],
                   ),
-                  HeighSpace(54),
+                  const HeighSpace(54),
                   Center(
                     child: RichText(
                         text: TextSpan(
@@ -262,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           )
                         ])),
                   ),
-                  HeighSpace(26)
+                  const HeighSpace(26)
                 ],
               ),
             ),
